@@ -12,7 +12,7 @@ class SQLUpdate extends SQLStatement
         )));
 
         if ($this->columns) {
-            $set_arguments = [];
+            $set_arguments = array();
 
             foreach ($this->columns as $column => $value) {
                 $set_arguments[] = implode(' ', array(

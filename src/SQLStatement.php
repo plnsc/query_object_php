@@ -14,7 +14,7 @@ abstract class SQLStatement
         $this->entity = $entity;
     }
 
-    final function get_entity($entity)
+    final function get_entity()
     {
         return $this->entity;
     }

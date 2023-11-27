@@ -6,7 +6,7 @@ class SQLSelect extends SQLStatement
 {
     function add_column($column)
     {
-        $this->columns[] = $column ?? [];
+        $this->columns[] = $column ?? array();
     }
 
     function get_statement()
