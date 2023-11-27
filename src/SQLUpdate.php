@@ -6,20 +6,35 @@ class SQLUpdate extends SQLStatement
 {
     function get_statement()
     {
-        $sql_parts = [sprintf('UPDATE %s', $this->entity)];
+        $sql_parts = array(implode(' ', array(
+            DialectMapping::CLAUSE_UPDATE,
+            $this->entity
+        )));
 
         if ($this->columns) {
             $set_arguments = [];
 
             foreach ($this->columns as $column => $value) {
-                $set_arguments[] = sprintf('%s = %s', $column, $value);
+                $set_arguments[] = implode(' ', array(
+                    $column,
+                    DialectMapping::OPERATOR_SET,
+                    $value
+                ));
             }
 
-            $sql_parts[] = sprintf('SET %s', implode(', ', $set_arguments));
+            $sql_parts[] = implode(' ', array(
+                DialectMapping::CLAUSE_SET,
+                implode(
+                    sprintf('%s ', DialectMapping::SEPARATOR_LIST),
+                    $set_arguments
+                )
+            ));
         }
 
         if ($this->criteria) {
-            $sql_parts[] = sprintf('WHERE %s', $this->criteria->dump());
+            $sql_parts[] = implode(' ', array(
+                DialectMapping::CLAUSE_WHERE, $this->criteria->dump()
+            ));
         }
 
         $this->sql = implode(' ', $sql_parts);

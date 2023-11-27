@@ -8,7 +8,7 @@ class Criteria extends Expression
     private $operators = array();
     private $properties = array();
 
-    function add(Expression $expression, $operator = self::AND_OPERATOR)
+    function add(Expression $expression, $operator = DialectMapping::OPERATOR_AND)
     {
         if (empty($this->expressions)) {
             unset($operator);

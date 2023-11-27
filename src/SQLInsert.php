@@ -6,12 +6,23 @@ class SQLInsert extends SQLStatement
 {
     function get_statement()
     {
-        $this->sql = sprintf(
-            'INSERT INTO %s (%s) VALUES (%s)',
+        $group_wrapper = DialectMapping::GROUP_WRAPPER;
+
+        $this->sql = implode(' ', array(
+            DialectMapping::CLAUSE_INSERT_INTO,
             $this->entity,
-            implode(', ', array_keys($this->columns)),
-            implode(', ', array_values($this->columns))
-        );
+            implode('', array(
+                $group_wrapper[0],
+                implode(', ', array_keys($this->columns)),
+                $group_wrapper[1]
+            )),
+            DialectMapping::CLAUSE_VALUES,
+            implode('', array(
+                $group_wrapper[0],
+                implode(', ', array_values($this->columns)),
+                $group_wrapper[1]
+            )),
+        ));
 
         return $this->sql;
     }

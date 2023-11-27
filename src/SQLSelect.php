@@ -11,34 +11,39 @@ class SQLSelect extends SQLStatement
 
     function get_statement()
     {
-        $sql_parts = [
-            sprintf(
-                'SELECT %s FROM %s',
-                implode(', ', array_values($this->columns)),
-                $this->entity
-            )
-        ];
+        $sql_parts = array(implode(' ', array(
+            DialectMapping::CLAUSE_SELECT,
+            implode(
+                sprintf('%s ', DialectMapping::SEPARATOR_LIST),
+                array_values($this->columns)
+            ),
+            DialectMapping::CLAUSE_FROM,
+            $this->entity
+        )));
 
         if ($this->criteria) {
-            $sql_parts[] = sprintf('WHERE %s', $this->criteria->dump());
+            $sql_parts[] = implode(' ', array(
+                DialectMapping::CLAUSE_WHERE,
+                $this->criteria->dump()
+            ));
 
             if ($this->criteria->has_property('order')) {
-                $sql_parts[] = sprintf(
-                    'ORDER BY %s',
+                $sql_parts[] = implode(' ', array(
+                    DialectMapping::CLAUSE_ORDER_BY,
                     $this->criteria->get_property('order')
-                );
+                ));
             }
             if ($this->criteria->has_property('limit')) {
-                $sql_parts[] = sprintf(
-                    'LIMIT %s',
+                $sql_parts[] = implode(' ', array(
+                    DialectMapping::CLAUSE_LIMIT,
                     $this->criteria->get_property('limit')
-                );
+                ));
             }
             if ($this->criteria->has_property('offset')) {
-                $sql_parts[] = sprintf(
-                    'OFFSET %s',
+                $sql_parts[] = implode(' ',  array(
+                    DialectMapping::CLAUSE_OFFSET,
                     $this->criteria->get_property('offset')
-                );
+                ));
             }
         }
 

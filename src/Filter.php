@@ -17,6 +17,9 @@ class Filter extends Expression
 
     function transform($value)
     {
+        $str_wrapper = DialectMapping::STRING_WRAPPER;
+        $group_wrapper = DialectMapping::GROUP_WRAPPER;
+
         $result = $value;
 
         if (is_array($value)) {
@@ -24,19 +27,23 @@ class Filter extends Expression
 
             foreach ($value as $x) {
                 if (is_string($x)) {
-                    $list[] = sprintf("'%s'", $x);
+                    $list[] = implode('', array($str_wrapper[0], $x, $str_wrapper[1]));
                 } else {
                     $list[] = $x;
                 }
             }
 
-            $result = sprintf('(%s)', implode(',', $list));
+            $result = implode('', array(
+                $group_wrapper[0],
+                implode(DialectMapping::SEPARATOR_LIST, $list),
+                $group_wrapper[1]
+            ));
         } else if (is_string($value)) {
-            $result = sprintf("'%s'", $value);
+            $result = implode('', array($str_wrapper[0], $value, $str_wrapper[1]));
         } else if (is_null($value)) {
-            $result = 'NULL';
+            $result = DialectMapping::VALUE_NULL;
         } else if (is_bool($value)) {
-            $result = $value ? 'TRUE' : 'FALSE';
+            $result = $value ? DialectMapping::VALUE_TRUE : DialectMapping::VALUE_FALSE;
         }
 
         return $result;

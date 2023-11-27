@@ -26,14 +26,22 @@ abstract class SQLStatement
 
     function set_row_data($column, $value)
     {
+
+        $str_wrapper = DialectMapping::STRING_WRAPPER;
+
         if (is_string($value)) {
-            $this->columns[$column] = sprintf("'%s'", addslashes($value));
+            $this->columns[$column] = implode('', array(
+                $str_wrapper[0],
+                addslashes($value),
+                $str_wrapper[1]
+            ));
         } else if (is_bool($value)) {
-            $this->columns[$column] = $value ? 'TRUE' : 'FALSE';
+            $this->columns[$column] = $value ?
+                DialectMapping::VALUE_TRUE : DialectMapping::VALUE_FALSE;
         } else if (isset($value)) {
             $this->columns[$column] = $value;
         } else {
-            $this->columns[$column] = 'NULL';
+            $this->columns[$column] = DialectMapping::VALUE_NULL;
         }
     }
 
