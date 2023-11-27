@@ -6,7 +6,7 @@ class SQLSelect extends SQLStatement
 {
     function add_column($column)
     {
-        $this->columns[] = $column;
+        $this->columns[] = $column ?? [];
     }
 
     function get_statement()
@@ -14,7 +14,7 @@ class SQLSelect extends SQLStatement
         $sql_parts = [
             sprintf(
                 'SELECT %s FROM %s',
-                implode(', ', array_keys($this->columns ?? [])),
+                implode(', ', array_values($this->columns)),
                 $this->entity
             )
         ];
