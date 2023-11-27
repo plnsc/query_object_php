@@ -1,0 +1,23 @@
+{
+  "name": "pnasc/query_objects",
+  "description": "Simple implementation of Query Objects Design Pattern",
+  "type": "library",
+  "license": "ISC",
+  "authors": [
+    {
+      "name": "Paulo Nascimento",
+      "email": "paulornasc@gmail.com"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^10.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "pnasc\\": "src/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
+}
