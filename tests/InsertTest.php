@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \pnasc\Insert
  */
-class SQLInsertTest extends TestCase
+class InsertTest extends TestCase
 {
 
     public function test_statement()

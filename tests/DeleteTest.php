@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \pnasc\SQLDelete
  */
-class SQLDeleteTest extends TestCase
+class DeleteTest extends TestCase
 {
 
     public function test_statement()

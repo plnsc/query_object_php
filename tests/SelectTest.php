@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \pnasc\SQLSelect
  */
-class SQLSelectTest extends TestCase
+class SelectTest extends TestCase
 {
 
     public function test_statement()

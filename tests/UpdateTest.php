@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \pnasc\SQLUpdate
  */
-class SQLUpdateTest extends TestCase
+class UpdateTest extends TestCase
 {
 
     public function test_statement()
