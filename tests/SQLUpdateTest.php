@@ -15,7 +15,7 @@ class SQLUpdateTest extends TestCase
         $result = "UPDATE users SET name = 'Lady Gaga', email = 'somemock@email' WHERE (id = '4c4d172c-51f1-4b61-b5ee-df6ab831119b')";
 
         $criteria = new Criteria;
-        $criteria->add(new Filter('id', '=', '4c4d172c-51f1-4b61-b5ee-df6ab831119b'));
+        $criteria->add(Filter::equals('id', '4c4d172c-51f1-4b61-b5ee-df6ab831119b'));
 
         $statement = new SQLUpdate;
         $statement->set_entity('users');

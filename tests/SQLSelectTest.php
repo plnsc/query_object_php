@@ -16,8 +16,8 @@ class SQLSelectTest extends TestCase
         $result .= " WHERE (name LIKE 'enzo%' AND name LIKE 'valentina%') ORDER BY name LIMIT 10 OFFSET 0";
 
         $criteria = new Criteria;
-        $criteria->add(new Filter('name', 'LIKE', 'enzo%'));
-        $criteria->add(new Filter('name', 'LIKE', 'valentina%'));
+        $criteria->add(Filter::like('name', 'enzo%'));
+        $criteria->add(Filter::like('name', 'valentina%'));
         $criteria->set_property('offset', 0);
         $criteria->set_property('limit', 10);
         $criteria->set_property('order', 'name');

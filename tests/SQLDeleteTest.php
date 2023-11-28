@@ -15,7 +15,7 @@ class SQLDeleteTest extends TestCase
         $result = "DELETE FROM some_table WHERE (some_table_id = 3)";
 
         $criteria = new Criteria;
-        $criteria->add(new Filter('some_table_id', '=', 3));
+        $criteria->add(Filter::equals('some_table_id', 3));
 
         $statement = new SQLDelete;
         $statement->set_entity('some_table');

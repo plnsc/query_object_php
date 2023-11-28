@@ -14,8 +14,8 @@ class CriteriaTest extends TestCase
         $result = "(br_state IN ('PE','RN','PB') AND br_state NOT IN ('SP','RJ'))";
 
         $criteria = new Criteria;
-        $criteria->add(new Filter('br_state', 'IN', array('PE', 'RN', 'PB')));
-        $criteria->add(new Filter('br_state', 'NOT IN', array('SP', 'RJ')));
+        $criteria->add(Filter::in('br_state', ['PE', 'RN', 'PB']));
+        $criteria->add(Filter::not_in('br_state', ['SP', 'RJ']));
 
         $this->assertEquals($result, $criteria->dump());
     }
@@ -25,8 +25,8 @@ class CriteriaTest extends TestCase
         $result = "(nome LIKE 'enzo%' AND nome LIKE 'valentina%')";
 
         $criteria = new Criteria;
-        $criteria->add(new Filter('nome', 'LIKE', 'enzo%'));
-        $criteria->add(new Filter('nome', 'LIKE', 'valentina%'));
+        $criteria->add(Filter::like('nome', 'enzo%'));
+        $criteria->add(Filter::like('nome', 'valentina%'));
 
         $this->assertEquals($result, $criteria->dump());
     }
@@ -36,8 +36,8 @@ class CriteriaTest extends TestCase
         $result = "(idade < 16 OR idade > 60)";
 
         $criteria = new Criteria;
-        $criteria->add(new Filter('idade', '<', 16), SQLDialect::OPERATOR_OR);
-        $criteria->add(new Filter('idade', '>', 60), SQLDialect::OPERATOR_OR);
+        $criteria->add(Filter::lt('idade', 16), SQLDialect::OPERATOR_OR);
+        $criteria->add(Filter::gt('idade', 60), SQLDialect::OPERATOR_OR);
 
         $this->assertEquals($result, $criteria->dump());
     }
@@ -47,8 +47,8 @@ class CriteriaTest extends TestCase
         $result = "(telefone IS NOT NULL AND genero = 'nb')";
 
         $criteria = new Criteria;
-        $criteria->add(new Filter('telefone', 'IS NOT', null));
-        $criteria->add(new Filter('genero', '=', 'nb'));
+        $criteria->add(Filter::is_not('telefone', null));
+        $criteria->add(Filter::equals('genero', 'nb'));
 
         $this->assertEquals($result, $criteria->dump());
     }
@@ -58,8 +58,8 @@ class CriteriaTest extends TestCase
         $result = "(status = FALSE AND some_number = 1024)";
 
         $criteria = new Criteria;
-        $criteria->add(new Filter('status', '=', false));
-        $criteria->add(new Filter('some_number', '=', 1024));
+        $criteria->add(Filter::equals('status', false));
+        $criteria->add(Filter::equals('some_number', 1024));
 
         $this->assertEquals($result, $criteria->dump());
     }
@@ -69,12 +69,12 @@ class CriteriaTest extends TestCase
         $result = "((field = 'some_value' AND some_number < 24) OR (field = 'another_value' AND some_number > 16))";
 
         $criteria_1 = new Criteria;
-        $criteria_1->add(new Filter('field', '=', 'some_value'));
-        $criteria_1->add(new Filter('some_number', '<', 24));
+        $criteria_1->add(Filter::equals('field', 'some_value'));
+        $criteria_1->add(Filter::lt('some_number', 24));
 
         $criteria_2 = new Criteria;
-        $criteria_2->add(new Filter('field', '=', 'another_value'));
-        $criteria_2->add(new Filter('some_number', '>', 16));
+        $criteria_2->add(Filter::equals('field', 'another_value'));
+        $criteria_2->add(Filter::gt('some_number', 16));
 
         $criteria_3 = new Criteria;
         $criteria_3->add($criteria_1);

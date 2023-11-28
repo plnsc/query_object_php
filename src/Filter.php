@@ -21,4 +21,63 @@ class Filter extends Expression
     {
         return implode(' ', [$this->variable, $this->operator, $this->value]);
     }
+
+    public static function equals($variable, $value): Filter
+    {
+        return new self($variable, SQLDialect::OPERATOR_EQUAL, $value);
+    }
+
+    public static function not_equals($variable, $value): Filter
+    {
+        return new self($variable, SQLDialect::OPERATOR_NOT_EQUAL, $value);
+    }
+
+    public static function is($variable, $value): Filter
+    {
+        return new self($variable, SQLDialect::OPERATOR_IS, $value);
+    }
+
+    public static function is_not($variable, $value): Filter
+    {
+        return new self($variable, SQLDialect::OPERATOR_IS_NOT, $value);
+    }
+
+    public static function like($variable, $value): Filter
+    {
+        return new self($variable, SQLDialect::OPERATOR_LIKE, $value);
+    }
+    public static function not_like($variable, $value): Filter
+    {
+        return new self($variable, SQLDialect::OPERATOR_NOT_LIKE, $value);
+    }
+
+    public static function in($variable, $value): Filter
+    {
+        return new self($variable, SQLDialect::OPERATOR_IN, $value);
+    }
+
+    public static function not_in($variable, $value): Filter
+    {
+        return new self($variable, SQLDialect::OPERATOR_NOT_IN, $value);
+    }
+
+    public static function lt($variable, $value): Filter
+    {
+        return new self($variable, SQLDialect::OPERATOR_LESS_THAN, $value);
+    }
+
+    public static function lt_equals($variable, $value): Filter
+    {
+        return new self($variable, SQLDialect::OPERATOR_LESS_THAN_OR_EQUAL, $value);
+    }
+
+    public static function gt($variable, $value): Filter
+    {
+        return new self($variable, SQLDialect::OPERATOR_GREATER_THAN, $value);
+    }
+
+    public static function gt_equals($variable, $value): Filter
+    {
+        return new self($variable, SQLDialect::OPERATOR_GREATER_THAN_OR_EQUAL, $value);
+    }
 }
