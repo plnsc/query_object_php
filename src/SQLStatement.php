@@ -2,42 +2,35 @@
 
 namespace pnasc;
 
-abstract class SQLStatement
+abstract class SQLStatement extends SQLDialect
 {
     protected $entity;
     protected $criteria;
     protected $columns;
     protected $sql;
 
-    protected $dialect;
-
-    public function __construct()
-    {
-        $this->dialect = new SqlDialect();
-    }
-
-    final function set_entity($entity)
+    final public function set_entity($entity)
     {
         $this->entity = $entity;
     }
 
-    final function get_entity()
+    final public function get_entity()
     {
-        return $this->dialect->wrapper('identifier', $this->entity);
+        return $this->wrapper('identifier', $this->entity);
     }
 
-    function set_criteria(Criteria $criteria)
+    public function set_criteria(Criteria $criteria)
     {
         $this->criteria = $criteria;
     }
 
-    function set_row_data($column, $value)
+    public function set_row_data($column, $value)
     {
         if (isset($value)) {
             $this->columns[$column] =
-            $this->dialect->sanitize_value($value, true);
+            $this->sanitize_value($value, true);
         }
     }
 
-    abstract function get_statement();
+    abstract public function get_statement();
 }

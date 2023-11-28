@@ -7,14 +7,14 @@ class SQLInsert extends SQLStatement
     public function get_statement()
     {
         $this->sql = implode(' ', array(
-            $this->dialect::CLAUSE_INSERT_INTO,
+            $this::CLAUSE_INSERT_INTO,
             $this->get_entity(),
-            $this->dialect->wrapper('group',
-                implode($this->dialect::SEPARATOR_LIST . ' ',
+            $this->wrapper('group',
+                implode($this::SEPARATOR_LIST . ' ',
                     array_keys($this->columns))),
-            $this->dialect::CLAUSE_VALUES,
-            $this->dialect->wrapper('group',
-                implode($this->dialect::SEPARATOR_LIST . ' ',
+            $this::CLAUSE_VALUES,
+            $this->wrapper('group',
+                implode($this::SEPARATOR_LIST . ' ',
                     array_values($this->columns))),
         ));
 
