@@ -10,12 +10,8 @@ class Criteria extends Expression
 
     public function add(Expression $expression, $operator = SQLDialect::OPERATOR_AND)
     {
-        if (empty($this->expressions)) {
-            unset($operator);
-        }
-
         $this->expressions[] = $expression;
-        $this->operators[] = $operator ?? '';
+        $this->operators[] = $operator;
     }
 
     public function dump()
@@ -23,13 +19,18 @@ class Criteria extends Expression
         $result = '';
 
         if (is_array($this->expressions)) {
-            foreach ($this->expressions as $e => $expression) {
-                $result .= sprintf('%s %s ',
-                    $this->operators[$e], $expression->dump());
+            foreach ($this->expressions as $i => $expression) {
+                $operator = '';
+
+                if ($i > 0) {
+                    $operator = ' ' . $this->operators[$i];
+                }
+
+                $result .= implode(' ', [$operator, $expression->dump()]);
             }
         }
 
-        return sprintf('(%s)', trim($result));
+        return $this->dialect->wrapper('group', trim($result));
     }
 
     public function set_property($property, $value)
