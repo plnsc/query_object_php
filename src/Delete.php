@@ -2,7 +2,7 @@
 
 namespace pnasc;
 
-class SQLDelete extends SQLStatement
+class Delete extends Statement
 {
     public function get_statement()
     {

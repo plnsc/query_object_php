@@ -2,7 +2,7 @@
 
 namespace pnasc;
 
-abstract class Expression extends SQLDialect
+abstract class Expression extends Dialect
 {
     abstract public function dump();
 }

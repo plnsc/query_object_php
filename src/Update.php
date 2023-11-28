@@ -2,7 +2,7 @@
 
 namespace pnasc;
 
-class SQLUpdate extends SQLStatement
+class Update extends Statement
 {
     public function get_statement()
     {

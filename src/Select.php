@@ -2,7 +2,7 @@
 
 namespace pnasc;
 
-class SQLSelect extends SQLStatement
+class Select extends Statement
 {
     public function add_column($column)
     {

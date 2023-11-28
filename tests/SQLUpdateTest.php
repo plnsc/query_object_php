@@ -17,7 +17,7 @@ class SQLUpdateTest extends TestCase
         $criteria = new Criteria;
         $criteria->add(Filter::equals('id', '4c4d172c-51f1-4b61-b5ee-df6ab831119b'));
 
-        $statement = new SQLUpdate;
+        $statement = new Update;
         $statement->set_entity('users');
         $statement->set_row_data('name', 'Lady Gaga');
         $statement->set_row_data('email', 'somemock@email');

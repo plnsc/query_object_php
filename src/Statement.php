@@ -2,7 +2,7 @@
 
 namespace pnasc;
 
-abstract class SQLStatement extends SQLDialect
+abstract class Statement extends Dialect
 {
     protected $entity;
     protected $criteria;

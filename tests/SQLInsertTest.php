@@ -15,7 +15,7 @@ class SQLInsertTest extends TestCase
         $result = "INSERT INTO aluno (id, fone, nascimento, genero, serie, mensalidade)";
         $result .= " VALUES ('Paulo Nascimento', '+55 81 99631-1490', '1993-12-17', 'hc', 'si', 850.55)";
 
-        $statement = new SQLInsert;
+        $statement = new Insert;
         $statement->set_entity('aluno');
         $statement->set_row_data('id', 7);
         $statement->set_row_data('id', 'Paulo Nascimento');

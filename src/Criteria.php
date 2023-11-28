@@ -7,7 +7,7 @@ class Criteria extends Expression
     private $expressions = array();
     private $properties = array();
 
-    public function add(Expression $expression, $operator = SQLDialect::OPERATOR_AND)
+    public function add(Expression $expression, $operator = Dialect::OPERATOR_AND)
     {
         $this->expressions[] = [
             'expression' => $expression,

@@ -2,7 +2,7 @@
 
 namespace pnasc;
 
-class SQLInsert extends SQLStatement
+class Insert extends Statement
 {
     public function get_statement()
     {

@@ -2,7 +2,7 @@
 
 namespace pnasc;
 
-class SQLDialect
+class Dialect
 {
     // const OPERATOR_ADDITION = '+';
     // const OPERATOR_SUBTRACTION = '-';

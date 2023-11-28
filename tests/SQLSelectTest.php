@@ -22,7 +22,7 @@ class SQLSelectTest extends TestCase
         $criteria->set_property('limit', 10);
         $criteria->set_property('order', 'name');
 
-        $statement = new SQLSelect;
+        $statement = new Select;
         $statement->set_entity('gen_z_names');
         $statement->add_column('id');
         $statement->add_column('name');

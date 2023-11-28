@@ -36,8 +36,8 @@ class CriteriaTest extends TestCase
         $result = "(idade < 16 OR idade > 60)";
 
         $criteria = new Criteria;
-        $criteria->add(Filter::lt('idade', 16), SQLDialect::OPERATOR_OR);
-        $criteria->add(Filter::gt('idade', 60), SQLDialect::OPERATOR_OR);
+        $criteria->add(Filter::lt('idade', 16), Dialect::OPERATOR_OR);
+        $criteria->add(Filter::gt('idade', 60), Dialect::OPERATOR_OR);
 
         $this->assertEquals($result, $criteria->dump());
     }
@@ -78,7 +78,7 @@ class CriteriaTest extends TestCase
 
         $criteria_3 = new Criteria;
         $criteria_3->add($criteria_1);
-        $criteria_3->add($criteria_2, SQLDialect::OPERATOR_OR);
+        $criteria_3->add($criteria_2, Dialect::OPERATOR_OR);
 
         $this->assertEquals($result, $criteria_3->dump());
     }
