@@ -28,7 +28,7 @@ class SQLUpdate extends SQLStatement
 
         if ($this->criteria) {
             $sql_parts[] = implode(' ', array(
-                SQLDialect::CLAUSE_WHERE, $this->criteria->dump()));
+                $this->dialect::CLAUSE_WHERE, $this->criteria->dump()));
         }
 
         $this->sql = implode(' ', $sql_parts);

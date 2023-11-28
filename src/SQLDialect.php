@@ -8,21 +8,21 @@ class SQLDialect
     // const OPERATOR_SUBTRACTION = '-';
     // const OPERATOR_MULTIPLICATION = '*';
     // const OPERATOR_DIVISION = '/';
-    const OPERATOR_MODULO = '%';
-    const OPERATOR_EQUAL = '=';
-    const OPERATOR_NOT_EQUAL = '<>'; // or !=
-    const OPERATOR_LESS_THAN = '<';
-    const OPERATOR_GREATER_THAN = '>';
-    const OPERATOR_LESS_THAN_OR_EQUAL = '<=';
-    const OPERATOR_GREATER_THAN_OR_EQUAL = '>=';
+    // const OPERATOR_MODULO = '%';
+    // const OPERATOR_EQUAL = '=';
+    // const OPERATOR_NOT_EQUAL = '<>'; // or !=
+    // const OPERATOR_LESS_THAN = '<';
+    // const OPERATOR_GREATER_THAN = '>';
+    // const OPERATOR_LESS_THAN_OR_EQUAL = '<=';
+    // const OPERATOR_GREATER_THAN_OR_EQUAL = '>=';
     const OPERATOR_AND = 'AND';
     const OPERATOR_OR = 'OR';
-    const OPERATOR_NOT = 'NOT';
-    const OPERATOR_LIKE = 'LIKE';
-    const OPERATOR_IN = 'IN';
-    const OPERATOR_IS = 'IS';
-    const OPERATOR_BETWEEN = 'BETWEEN';
-    const OPERATOR_ALIAS = 'AS';
+    // const OPERATOR_NOT = 'NOT';
+    // const OPERATOR_LIKE = 'LIKE';
+    // const OPERATOR_IN = 'IN';
+    // const OPERATOR_IS = 'IS';
+    // const OPERATOR_BETWEEN = 'BETWEEN';
+    // const OPERATOR_ALIAS = 'AS';
     const OPERATOR_SET = '=';
 
     const VALUE_TRUE = 'TRUE';
