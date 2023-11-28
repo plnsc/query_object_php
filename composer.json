@@ -1,5 +1,5 @@
 {
-  "name": "pnasc/query_objects",
+  "name": "pnasc/query_object",
   "description": "Simple implementation of Query Objects Design Pattern",
   "type": "library",
   "license": "ISC",
