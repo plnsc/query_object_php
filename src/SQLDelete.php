@@ -7,7 +7,7 @@ class SQLDelete extends SQLStatement
     public function get_statement()
     {
         $sql_parts = array(implode(' ', array(
-            $this->dialect::CLAUSE_DELETE_FROM, $this->entity)));
+            $this->dialect::CLAUSE_DELETE_FROM, $this->get_entity())));
 
         if ($this->criteria) {
             $sql_parts[] = implode(' ', array(

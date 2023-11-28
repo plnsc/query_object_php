@@ -16,7 +16,7 @@ class SQLSelect extends SQLStatement
             implode($this->dialect::SEPARATOR_LIST . ' ',
                 array_values($this->columns)),
             $this->dialect::CLAUSE_FROM,
-            $this->entity,
+            $this->get_entity(),
         )));
 
         if ($this->criteria) {

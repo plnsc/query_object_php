@@ -8,7 +8,7 @@ class SQLInsert extends SQLStatement
     {
         $this->sql = implode(' ', array(
             $this->dialect::CLAUSE_INSERT_INTO,
-            $this->entity,
+            $this->get_entity(),
             $this->dialect->wrapper('group',
                 implode($this->dialect::SEPARATOR_LIST . ' ',
                     array_keys($this->columns))),

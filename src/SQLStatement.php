@@ -23,7 +23,7 @@ abstract class SQLStatement
 
     final function get_entity()
     {
-        return $this->entity;
+        return $this->dialect->wrapper('identifier', $this->entity);
     }
 
     function set_criteria(Criteria $criteria)

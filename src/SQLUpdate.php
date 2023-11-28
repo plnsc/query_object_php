@@ -7,7 +7,7 @@ class SQLUpdate extends SQLStatement
     public function get_statement()
     {
         $sql_parts = array(implode(' ', array(
-            $this->dialect::CLAUSE_UPDATE, $this->entity)));
+            $this->dialect::CLAUSE_UPDATE, $this->get_entity())));
 
         if ($this->columns) {
             $set_arguments = array();
