@@ -8,7 +8,7 @@ class Filter extends Expression
     private $operator;
     private $value;
 
-    function __construct($variable, $operator, $value)
+    public function __construct($variable, $operator, $value)
     {
         parent::__construct();
 
@@ -17,7 +17,7 @@ class Filter extends Expression
         $this->value = $this->dialect->sanitize_value($value);
     }
 
-    function dump()
+    public function dump()
     {
         return implode(' ', [$this->variable, $this->operator, $this->value]);
     }

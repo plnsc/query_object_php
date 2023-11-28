@@ -4,12 +4,12 @@ namespace pnasc;
 
 class SQLSelect extends SQLStatement
 {
-    function add_column($column)
+    public function add_column($column)
     {
         $this->columns[] = $column ?? array();
     }
 
-    function get_statement()
+    public function get_statement()
     {
         $sql_parts = array(implode(' ', array(
             $this->dialect::CLAUSE_SELECT,

@@ -20,11 +20,6 @@ class CriteriaTest extends TestCase
         $this->assertEquals($result, $criteria->dump());
     }
 
-
-
-
-
-
     public function test_string()
     {
         $result = "(nome LIKE 'enzo%' AND nome LIKE 'valentina%')";

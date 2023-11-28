@@ -4,7 +4,7 @@ namespace pnasc;
 
 class SQLInsert extends SQLStatement
 {
-    function get_statement()
+    public function get_statement()
     {
         $this->sql = implode(' ', array(
             $this->dialect::CLAUSE_INSERT_INTO,
@@ -21,8 +21,9 @@ class SQLInsert extends SQLStatement
         return $this->sql;
     }
 
-    function set_criteria(Criteria $criteria)
+    public function set_criteria(Criteria $criteria)
     {
-        throw new \Exception(sprintf('Cannot call set_criteria from %s', __CLASS__));
+        throw new \Exception(sprintf('Cannot call %s from %s',
+            __METHOD__, __CLASS__));
     }
 }

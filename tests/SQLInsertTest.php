@@ -12,7 +12,7 @@ class SQLInsertTest extends TestCase
 
     public function test_statement()
     {
-        $result  = "INSERT INTO aluno (id, fone, nascimento, genero, serie, mensalidade)";
+        $result = "INSERT INTO aluno (id, fone, nascimento, genero, serie, mensalidade)";
         $result .= " VALUES ('Paulo Nascimento', '+55 81 99631-1490', '1993-12-17', 'hc', 'si', 850.55)";
 
         $statement = new SQLInsert;

@@ -18,7 +18,7 @@ class Criteria extends Expression
         $this->operators[] = $operator ?? '';
     }
 
-    function dump()
+    public function dump()
     {
         $result = '';
 
@@ -32,17 +32,17 @@ class Criteria extends Expression
         return sprintf('(%s)', trim($result));
     }
 
-    function set_property($property, $value)
+    public function set_property($property, $value)
     {
         $this->properties[$property] = $value;
     }
 
-    function get_property($property)
+    public function get_property($property)
     {
         return $this->properties[$property];
     }
 
-    function has_property($property)
+    public function has_property($property)
     {
         return array_key_exists($property, $this->properties);
     }
