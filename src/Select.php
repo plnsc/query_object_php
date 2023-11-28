@@ -6,7 +6,7 @@ class Select extends Statement
 {
     public function add_column($column)
     {
-        $this->columns[] = $column ?? array();
+        $this->columns[] = $column;
     }
 
     public function get_statement()
@@ -45,5 +45,11 @@ class Select extends Statement
 
         $this->sql = implode(' ', $sql_parts);
         return $this->sql;
+    }
+
+    public function set_data($column, $value)
+    {
+        throw new \Exception(sprintf('Cannot call %s from %s',
+            __METHOD__, __CLASS__));
     }
 }

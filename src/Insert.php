@@ -11,11 +11,11 @@ class Insert extends Statement
             $this->get_entity(),
             $this->wrapper('group',
                 implode($this::SEPARATOR_LIST . ' ',
-                    array_keys($this->columns))),
+                    array_keys($this->data))),
             $this::CLAUSE_VALUES,
             $this->wrapper('group',
                 implode($this::SEPARATOR_LIST . ' ',
-                    array_values($this->columns))),
+                    array_values($this->data))),
         ));
 
         return $this->sql;

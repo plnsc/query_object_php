@@ -17,4 +17,10 @@ class Delete extends Statement
         $this->sql = implode(' ', $sql_parts);
         return $this->sql;
     }
+
+    public function set_data($column, $value)
+    {
+        throw new \Exception(sprintf('Cannot call %s from %s',
+            __METHOD__, __CLASS__));
+    }
 }

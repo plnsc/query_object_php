@@ -9,10 +9,10 @@ class Update extends Statement
         $sql_parts = array(implode(' ', array(
             $this::CLAUSE_UPDATE, $this->get_entity())));
 
-        if ($this->columns) {
+        if ($this->data) {
             $set_arguments = array();
 
-            foreach ($this->columns as $column => $value) {
+            foreach ($this->data as $column => $value) {
                 $set_arguments[] = implode(' ', array(
                     $column, $this::OPERATOR_SET, $value));
             }

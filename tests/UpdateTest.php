@@ -19,8 +19,8 @@ class UpdateTest extends TestCase
 
         $statement = new Update;
         $statement->set_entity('users');
-        $statement->set_row_data('name', 'Lady Gaga');
-        $statement->set_row_data('email', 'somemock@email');
+        $statement->set_data('name', 'Lady Gaga');
+        $statement->set_data('email', 'somemock@email');
         $statement->set_criteria($criteria);
 
         $this->assertEquals($result, $statement->get_statement());

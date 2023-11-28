@@ -7,6 +7,7 @@ abstract class Statement extends Dialect
     protected $entity;
     protected $criteria;
     protected $columns;
+    protected $data;
     protected $sql;
 
     final public function set_entity($entity)
@@ -14,7 +15,7 @@ abstract class Statement extends Dialect
         $this->entity = $entity;
     }
 
-    final public function get_entity()
+    final protected function get_entity()
     {
         return $this->wrapper('identifier', $this->entity);
     }
@@ -24,11 +25,11 @@ abstract class Statement extends Dialect
         $this->criteria = $criteria;
     }
 
-    public function set_row_data($column, $value)
+    public function set_data($column, $value)
     {
         if (isset($value)) {
-            $this->columns[$column] =
-            $this->sanitize_value($value, true);
+            $this->data[$column] = $this->sanitize_value($value, true);
+            $this->columns[] = $column;
         }
     }
 
