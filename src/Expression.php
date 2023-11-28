@@ -2,14 +2,7 @@
 
 namespace pnasc;
 
-abstract class Expression
+abstract class Expression extends SQLDialect
 {
-    protected $dialect;
-
-    public function __construct()
-    {
-        $this->dialect = new SQLDialect();
-    }
-
-    abstract function dump();
+    abstract public function dump();
 }

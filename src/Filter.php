@@ -10,11 +10,9 @@ class Filter extends Expression
 
     public function __construct($variable, $operator, $value)
     {
-        parent::__construct();
-
         $this->variable = $variable;
         $this->operator = $operator;
-        $this->value = $this->dialect->sanitize_value($value);
+        $this->value = $this->sanitize_value($value);
     }
 
     public function dump()

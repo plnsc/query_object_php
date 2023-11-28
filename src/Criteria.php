@@ -28,7 +28,7 @@ class Criteria extends Expression
             }
         }
 
-        return $this->dialect->wrapper('group', trim($result));
+        return $this->wrapper('group', trim($result));
     }
 
     public function set_property($property, $value)
