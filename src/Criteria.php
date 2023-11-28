@@ -8,7 +8,7 @@ class Criteria extends Expression
     private $operators = array();
     private $properties = array();
 
-    function add(Expression $expression, $operator = DialectMapping::OPERATOR_AND)
+    public function add(Expression $expression, $operator = SQLDialect::OPERATOR_AND)
     {
         if (empty($this->expressions)) {
             unset($operator);
@@ -24,7 +24,8 @@ class Criteria extends Expression
 
         if (is_array($this->expressions)) {
             foreach ($this->expressions as $e => $expression) {
-                $result .= sprintf('%s %s ', $this->operators[$e], $expression->dump());
+                $result .= sprintf('%s %s ',
+                    $this->operators[$e], $expression->dump());
             }
         }
 

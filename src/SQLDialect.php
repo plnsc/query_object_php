@@ -2,7 +2,7 @@
 
 namespace pnasc;
 
-class DialectMapping
+class SQLDialect
 {
     // const OPERATOR_ADDITION = '+';
     // const OPERATOR_SUBTRACTION = '-';
@@ -45,9 +45,45 @@ class DialectMapping
     const CLAUSE_OFFSET = 'OFFSET';
     const CLAUSE_LIMIT = 'LIMIT';
 
-    const STRING_WRAPPER = array("'", "'");
-    const GROUP_WRAPPER = array("(", ")");
-    const IDENTIFIER_WRAPPER = array("", ""); // ``, [] or
-
     const SEPARATOR_LIST = ',';
+
+    private const STRING_WRAPPER = ["'", "'"];
+    private const IDENTIFIER_WRAPPER = ["", ""]; // ``, [] or
+    private const GROUP_WRAPPER = ["(", ")"];
+
+    final public function wrapper($name, $content)
+    {
+        $pairs = [
+            'string' => self::STRING_WRAPPER,
+            'identifier' => self::IDENTIFIER_WRAPPER,
+            'group' => self::GROUP_WRAPPER,
+        ];
+
+        if (in_array($name, array_keys($pairs))) {
+            return implode("",
+                [$pairs[$name][0], $content, $pairs[$name][1]]);
+        }
+
+        return $name;
+    }
+
+    final function sanitize_value($value, $ignore_list = false)
+    {
+        if (is_array($value) && !$ignore_list) {
+            foreach ($value as $k => $v) {
+                $value[$k] = self::sanitize_value($v);
+            }
+
+            return $this->wrapper('group',
+                implode(self::SEPARATOR_LIST, $value));
+        } else if (is_string($value)) {
+            return $this->wrapper('string', addslashes($value));
+        } else if (is_null($value)) {
+            return self::VALUE_NULL;
+        } else if (is_bool($value)) {
+            return $value ? self::VALUE_TRUE : self::VALUE_FALSE;
+        }
+
+        return $value;
+    }
 }

@@ -9,6 +9,13 @@ abstract class SQLStatement
     protected $columns;
     protected $sql;
 
+    protected $dialect;
+
+    public function __construct()
+    {
+        $this->dialect = new SqlDialect();
+    }
+
     final function set_entity($entity)
     {
         $this->entity = $entity;
@@ -26,22 +33,9 @@ abstract class SQLStatement
 
     function set_row_data($column, $value)
     {
-
-        $str_wrapper = DialectMapping::STRING_WRAPPER;
-
-        if (is_string($value)) {
-            $this->columns[$column] = implode('', array(
-                $str_wrapper[0],
-                addslashes($value),
-                $str_wrapper[1]
-            ));
-        } else if (is_bool($value)) {
-            $this->columns[$column] = $value ?
-                DialectMapping::VALUE_TRUE : DialectMapping::VALUE_FALSE;
-        } else if (isset($value)) {
-            $this->columns[$column] = $value;
-        } else {
-            $this->columns[$column] = DialectMapping::VALUE_NULL;
+        if (isset($value)) {
+            $this->columns[$column] =
+            $this->dialect->sanitize_value($value, true);
         }
     }
 
