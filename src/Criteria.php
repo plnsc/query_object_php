@@ -5,13 +5,14 @@ namespace pnasc;
 class Criteria extends Expression
 {
     private $expressions = array();
-    private $operators = array();
     private $properties = array();
 
     public function add(Expression $expression, $operator = SQLDialect::OPERATOR_AND)
     {
-        $this->expressions[] = $expression;
-        $this->operators[] = $operator;
+        $this->expressions[] = [
+            'expression' => $expression,
+            'operator' => $operator,
+        ];
     }
 
     public function dump()
@@ -19,14 +20,11 @@ class Criteria extends Expression
         $result = '';
 
         if (is_array($this->expressions)) {
-            foreach ($this->expressions as $i => $expression) {
-                $operator = '';
-
-                if ($i > 0) {
-                    $operator = ' ' . $this->operators[$i];
-                }
-
-                $result .= implode(' ', [$operator, $expression->dump()]);
+            foreach ($this->expressions as $i => $e) {
+                $result .= implode(' ', [
+                    ' ' . ($i > 0 ? $e['operator'] : ''),
+                    $e['expression']->dump(),
+                ]);
             }
         }
 
