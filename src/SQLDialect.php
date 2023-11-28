@@ -64,7 +64,7 @@ class SQLDialect
                 [$pairs[$name][0], $content, $pairs[$name][1]]);
         }
 
-        return $name;
+        return $content;
     }
 
     final function sanitize_value($value, $ignore_list = false)
