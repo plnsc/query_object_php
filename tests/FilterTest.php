@@ -3,7 +3,6 @@
 namespace pnasc;
 
 use PHPUnit\Framework\TestCase;
-use \ReflectionClass;
 
 /**
  * @covers \pnasc\Filter
@@ -13,7 +12,7 @@ class FilterTest extends TestCase
 
     public function assertPrivateProperty($expected, $object, $property_name, )
     {
-        $reflector = new ReflectionClass($object);
+        $reflector = new \ReflectionClass($object);
         $property = $reflector->getProperty($property_name);
         $property->setAccessible(true);
 
