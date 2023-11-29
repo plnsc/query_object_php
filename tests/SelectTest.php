@@ -20,11 +20,10 @@ class SelectTest extends TestCase
         $criteria->add(Filter::like('name', 'enzo%'));
         $criteria->add(Filter::like('name', 'valentina%'));
 
-        $criteria->set_property('offset', 0);
-        $criteria->set_property('limit', 10);
-
         $criteria->order_by('id');
         $criteria->order_by('name', -1);
+        $criteria->limit(10);
+        $criteria->offset(0);
 
         $statement = new Select;
         $statement->set_entity('gen_z_names');
