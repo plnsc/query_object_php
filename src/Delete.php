@@ -9,9 +9,9 @@ class Delete extends Statement
         $sql_parts = array(implode(' ', array(
             $this::CLAUSE_DELETE_FROM, $this->get_entity())));
 
-        if ($this->criteria) {
+        if ($this->expression) {
             $sql_parts[] = implode(' ', array(
-                $this::CLAUSE_WHERE, $this->criteria->dump()));
+                $this::CLAUSE_WHERE, $this->expression->dump()));
         }
 
         $this->sql = implode(' ', $sql_parts);

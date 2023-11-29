@@ -5,7 +5,7 @@ namespace pnasc;
 abstract class Statement extends Dialect
 {
     protected $entity;
-    protected $criteria;
+    protected $expression;
     protected $columns = [];
     protected $data = [];
     protected $data_pointer = 0;
@@ -21,9 +21,9 @@ abstract class Statement extends Dialect
         return $this->wrapper('identifier', $this->entity);
     }
 
-    public function set_criteria(Criteria $criteria)
+    public function set_expression(Expression $expression)
     {
-        $this->criteria = $criteria;
+        $this->expression = $expression;
     }
 
     public function add_column($column)

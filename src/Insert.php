@@ -25,7 +25,7 @@ class Insert extends Statement
         return $this->sql . $this::SEPARATOR_STATEMENT;
     }
 
-    public function set_criteria(Criteria $criteria)
+    public function set_expression(Expression $criteria)
     {
         throw new \Exception(sprintf('Cannot call %s from %s',
             __METHOD__, __CLASS__));

@@ -14,12 +14,12 @@ class Select extends Statement
             $this->get_entity(),
         )));
 
-        if ($this->criteria) {
+        if ($this->expression) {
             $sql_parts[] = implode(' ', array(
-                $this::CLAUSE_WHERE, $this->criteria->dump()));
+                $this::CLAUSE_WHERE, $this->expression->dump()));
 
-            if ($this->criteria->has_property('order_by')) {
-                $order_by = $this->criteria->get_property('order_by');
+            if ($this->expression->has_property('order_by')) {
+                $order_by = $this->expression->get_property('order_by');
 
                 foreach ($order_by as $i => $column) {
                     $order_by[$i] = implode(' ', [
@@ -33,16 +33,16 @@ class Select extends Statement
                     implode($this::SEPARATOR_LIST . ' ', $order_by),
                 ));
             }
-            if ($this->criteria->has_property('limit')) {
+            if ($this->expression->has_property('limit')) {
                 $sql_parts[] = implode(' ', array(
                     $this::CLAUSE_LIMIT,
-                    $this->criteria->get_property('limit'),
+                    $this->expression->get_property('limit'),
                 ));
             }
-            if ($this->criteria->has_property('offset')) {
+            if ($this->expression->has_property('offset')) {
                 $sql_parts[] = implode(' ', array(
                     $this::CLAUSE_OFFSET,
-                    $this->criteria->get_property('offset'),
+                    $this->expression->get_property('offset'),
                 ));
             }
         }

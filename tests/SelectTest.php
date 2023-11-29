@@ -31,7 +31,7 @@ class SelectTest extends TestCase
         $statement->add_column('name');
         $statement->add_column('gender');
 
-        $statement->set_criteria($criteria);
+        $statement->set_expression($criteria);
 
         $this->assertEquals($result, $statement->dump());
     }

@@ -19,7 +19,7 @@ class DeleteTest extends TestCase
 
         $statement = new Delete;
         $statement->set_entity('some_table');
-        $statement->set_criteria($criteria);
+        $statement->set_expression($criteria);
 
         $this->assertEquals($result, $statement->dump());
     }
