@@ -168,6 +168,9 @@ Exemplo 9:
 ```php
 $select = new Select;
 $select->set_entity('table_name');
+$select->add_column('id');
+$select->add_column('name');
+$select->add_column('email');
 
 $criteria = new Criteria;
 $criteria->add(Filter::like('name', 'some_name%'));
@@ -182,5 +185,5 @@ $select->set_expression($criteria);
 Output:
 
 ```sql
-SELECT  FROM table_name WHERE (name LIKE 'some_name%') ORDER BY id DESC, name ASC LIMIT 10 OFFSET 0;
+SELECT id, name, email FROM table_name WHERE (name LIKE 'some_name%') ORDER BY id DESC, name ASC LIMIT 10 OFFSET 0;
 ```
