@@ -19,18 +19,18 @@ class FilterTest extends TestCase
         $this->assertEquals($expected, $property->getValue($object));
     }
 
-    public function test_dump()
-    {
-        $expected = "thats_a_column = NULL";
-        $filter = new Filter('thats_a_column', '=', null);
-        $this->assertEquals($expected, $filter->dump());
-    }
-
-    public function test_equals()
+    public function test_equals_0()
     {
         $expected_operator = '=';
         $filter = Filter::equals(null, null);
         $this->assertPrivateProperty($expected_operator, $filter, 'operator');
+    }
+
+    public function test_equals_1()
+    {
+        $expected = "thats_a_column = NULL";
+        $filter = Filter::equals('thats_a_column', null);
+        $this->assertEquals($expected, $filter->dump());
     }
 
     public function test_not_equals()

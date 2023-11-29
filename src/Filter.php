@@ -8,7 +8,7 @@ class Filter extends Expression
     private $operator;
     private $value;
 
-    public function __construct($name, $operator, $value)
+    private function __construct($name, $operator, $value)
     {
         $this->name = $name;
         $this->operator = $operator;
