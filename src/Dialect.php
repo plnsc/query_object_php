@@ -4,13 +4,10 @@ namespace pnasc;
 
 class Dialect
 {
-    // const OPERATOR_ADDITION = '+';
-    // const OPERATOR_SUBTRACTION = '-';
-    // const OPERATOR_MULTIPLICATION = '*';
-    // const OPERATOR_DIVISION = '/';
-    // const OPERATOR_MODULO = '%';
+
     const OPERATOR_EQUAL = '=';
-    const OPERATOR_NOT_EQUAL = '<>'; // or !=
+    const OPERATOR_NOT_EQUAL = '<>'; // also: !=
+    const OPERATOR_SET = '=';
     const OPERATOR_IS = 'IS';
     const OPERATOR_IS_NOT = 'IS NOT';
     const OPERATOR_LIKE = 'LIKE';
@@ -23,9 +20,14 @@ class Dialect
     const OPERATOR_GREATER_THAN_OR_EQUAL = '>=';
     const OPERATOR_AND = 'AND';
     const OPERATOR_OR = 'OR';
+    // TODO: Remaining operators
     // const OPERATOR_BETWEEN = 'BETWEEN';
     // const OPERATOR_ALIAS = 'AS';
-    const OPERATOR_SET = '=';
+    // const OPERATOR_ADDITION = '+';
+    // const OPERATOR_SUBTRACTION = '-';
+    // const OPERATOR_MULTIPLICATION = '*';
+    // const OPERATOR_DIVISION = '/';
+    // const OPERATOR_MODULO = '%';
 
     const VALUE_TRUE = 'TRUE';
     const VALUE_FALSE = 'FALSE';
@@ -39,11 +41,13 @@ class Dialect
     const CLAUSE_SET = 'SET';
     const CLAUSE_DELETE_FROM = 'DELETE FROM';
     const CLAUSE_WHERE = 'WHERE';
-    const CLAUSE_GROUP_BY = 'GROUP BY';
-    const CLAUSE_HAVING = 'HAVING';
+    // TODO: Remaining clauses
+    // const CLAUSE_GROUP_BY = 'GROUP BY';
+    // const CLAUSE_HAVING = 'HAVING';
     const CLAUSE_ORDER_BY = 'ORDER BY';
-    const CLAUSE_SORT_ASCENDING = 'ASC';
-    const CLAUSE_SORT_DESCENDING = 'DESC';
+    // TODO: Order by modifiers
+    // const CLAUSE_SORT_ASCENDING = 'ASC';
+    // const CLAUSE_SORT_DESCENDING = 'DESC';
     const CLAUSE_OFFSET = 'OFFSET';
     const CLAUSE_LIMIT = 'LIMIT';
 
@@ -51,7 +55,7 @@ class Dialect
     const SEPARATOR_STATEMENT = ';';
 
     private const STRING_WRAPPER = ["'", "'"];
-    private const IDENTIFIER_WRAPPER = ["", ""]; // ``, [] or
+    private const IDENTIFIER_WRAPPER = ["", ""]; // also: ``, [] or
     private const GROUP_WRAPPER = ["(", ")"];
 
     final public function wrapper($name, $content)
