@@ -20,49 +20,45 @@ I might implement a query builder in JavaScript and Python after this as well.
 
 Some code examples for this package:
 
-### Expressions
+### Filtering things
 
-Exemplo 1:
+In this package there are two main classes that help filtering things, they are `Filter` and `Criteria`, both which inherits from `Expression`. The `Filter` class is a factory to itself with some static methods, that can be used like this:
+
+`Filter` - Example 1:
 
 ```php
 $filter = Filter::equals('some_column', 'some_value');
 echo $filter->dump();
 ```
 
-Output:
-
 ```sql
 some_column = 'some_value'
 ```
 
-Exemplo 2:
+`Filter` - Example 2:
 
 ```php
 $filter = Filter::is_not('some_column', null);
 echo $filter->dump();
 ```
 
-Output:
-
 ```sql
 some_column IS NOT NULL
 ```
 
-Exemplo 3:
+`Criteria` - Example 1:
 
 ```php
 $criteria = new Criteria;
 $criteria->add(Filter::like('some_column', '%something%'));
-dump_example($criteria);
+echo $criteria->dump();
 ```
-
-Output:
 
 ```sql
 (some_column LIKE '%something%')
 ```
 
-Exemplo 4:
+`Criteria` - Example 2:
 
 ```php
 $criteria = new Criteria;
@@ -71,13 +67,11 @@ $criteria->add(Filter::lt_equals('some_other_number', 70));
 echo $criteria->dump();
 ```
 
-Output:
-
 ```sql
 (some_number IN (10,11,12,13) AND some_other_number <= 70)
 ```
 
-Exemplo 5:
+`Criteria` - Example 3:
 
 ```php
 $criteria1 = new Criteria;
@@ -91,15 +85,15 @@ $criteria2->add($criteria1, Dialect::OPERATOR_OR);
 echo $criteria2->dump();
 ```
 
-Output:
-
 ```sql
 (some_column_0 LIKE '%something%' OR (some_column_1 NOT LIKE '%something%' OR some_column_2 BETWEEN 0 AND 100))
 ```
 
 ### Insert
 
-Exemplo 6:
+To build the SQL statement `INSERT INTO`, use:
+
+Example:
 
 ```php
 $insert = new Insert;
@@ -120,15 +114,13 @@ $insert->add_row('some_number', 7001);
 echo $insert->dump();
 ```
 
-Output:
-
 ```sql
 INSERT INTO table_name (id, name, somedate, some_number) VALUES (10, 'somebody', '1993-12-17', 7000), (11, 'somebody 2', '1997-02-21', 7001);
 ```
 
 ### Delete
 
-Exemplo 7:
+To build the SQL statement `DELETE FROM`, use:
 
 ```php
 $delete = new Delete;
@@ -137,15 +129,15 @@ $delete->set_expression(Filter::equals('some_table_id', 3));
 echo $delete->dump();
 ```
 
-Output:
-
 ```sql
 DELETE FROM table_name WHERE some_table_id = 3;
 ```
 
 ### Update
 
-Exemplo 8:
+To build the SQL statement `UPDATE`, use:
+
+Example:
 
 ```php
 $update = new Update;
@@ -155,15 +147,15 @@ $update->add_row('email', 'some@email.here');
 $update->set_expression(Filter::equals('id', 3));
 ```
 
-Output:
-
 ```sql
 UPDATE table_name SET name = 'some name', email = 'some@email.here' WHERE id = 3;
 ```
 
 ### Select
 
-Exemplo 9:
+To build the SQL statement `SELECT`, use:
+
+Example:
 
 ```php
 $select = new Select;
@@ -181,8 +173,6 @@ $criteria->offset(0);
 
 $select->set_expression($criteria);
 ```
-
-Output:
 
 ```sql
 SELECT id, name, email FROM table_name WHERE (name LIKE 'some_name%') ORDER BY id DESC, name ASC LIMIT 10 OFFSET 0;
