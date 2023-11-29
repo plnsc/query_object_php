@@ -18,10 +18,11 @@ class Dialect
     const OPERATOR_LESS_THAN_OR_EQUAL = '<=';
     const OPERATOR_GREATER_THAN = '>';
     const OPERATOR_GREATER_THAN_OR_EQUAL = '>=';
+    const OPERATOR_BETWEEN = 'BETWEEN';
+    const OPERATOR_BETWEEN_AND = 'AND';
     const OPERATOR_AND = 'AND';
     const OPERATOR_OR = 'OR';
     // TODO: Remaining operators
-    // const OPERATOR_BETWEEN = 'BETWEEN';
     // const OPERATOR_ALIAS = 'AS';
     // const OPERATOR_ADDITION = '+';
     // const OPERATOR_SUBTRACTION = '-';

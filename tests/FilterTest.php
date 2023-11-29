@@ -109,4 +109,18 @@ class FilterTest extends TestCase
         $filter = Filter::gt_equals(null, null);
         $this->assertPrivateProperty($expected_operator, $filter, 'operator');
     }
+
+    public function test_between_0()
+    {
+        $expected_operator = 'BETWEEN';
+        $filter = Filter::between(null, null, null);
+        $this->assertPrivateProperty($expected_operator, $filter, 'operator');
+    }
+
+    public function test_between_1()
+    {
+        $expected = 'test BETWEEN 15 AND 30';
+        $filter = Filter::between('test', 15, 30);
+        $this->assertEquals($expected, $filter->dump());
+    }
 }

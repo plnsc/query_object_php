@@ -12,11 +12,26 @@ class Filter extends Expression
     {
         $this->name = $name;
         $this->operator = $operator;
-        $this->value = $this->sanitize_value($value);
+
+        if ($this->operator === $this::OPERATOR_BETWEEN) {
+            $this->value = $value;
+        } else {
+            $this->value = $this->sanitize_value($value);
+        }
     }
 
     public function dump()
     {
+        if ($this->operator === $this::OPERATOR_BETWEEN) {
+            return implode(' ', [
+                $this->name,
+                $this->operator,
+                $this->value[0],
+                $this::OPERATOR_BETWEEN_AND,
+                $this->value[1],
+            ]);
+        }
+
         return implode(' ', [$this->name, $this->operator, $this->value]);
     }
 
@@ -77,5 +92,10 @@ class Filter extends Expression
     public static function gt_equals($name, $value): Filter
     {
         return new self($name, Dialect::OPERATOR_GREATER_THAN_OR_EQUAL, $value);
+    }
+
+    public static function between($name, $start, $end): Filter
+    {
+        return new self($name, Dialect::OPERATOR_BETWEEN, [$start, $end]);
     }
 }
