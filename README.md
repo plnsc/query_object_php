@@ -1,4 +1,4 @@
-# query_object
+# query_object_php
 
 This is a simple implementation of Query Object Design Pattern in PHP.
 
