@@ -4,7 +4,7 @@ namespace pnasc;
 
 class Update extends Statement
 {
-    public function get_statement()
+    public function dump()
     {
         $sql_parts = array(implode(' ', array(
             $this::CLAUSE_UPDATE, $this->get_entity())));

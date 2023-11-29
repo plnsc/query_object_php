@@ -4,7 +4,7 @@ namespace pnasc;
 
 class Select extends Statement
 {
-    public function get_statement()
+    public function dump()
     {
         $sql_parts = array(implode(' ', array(
             $this::CLAUSE_SELECT,

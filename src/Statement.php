@@ -51,5 +51,5 @@ abstract class Statement extends Dialect
         $this->data_pointer++;
     }
 
-    abstract public function get_statement();
+    abstract public function dump();
 }

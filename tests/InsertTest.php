@@ -23,7 +23,7 @@ class InsertTest extends TestCase
         $statement->add_row('somedate', '1993-12-17');
         $statement->add_row('some_number', 850.55);
 
-        $this->assertEquals($result, $statement->get_statement());
+        $this->assertEquals($result, $statement->dump());
     }
 
     public function test_statement_1()
@@ -47,6 +47,6 @@ class InsertTest extends TestCase
         $statement->add_row('somedate', '1997-02-21');
         $statement->add_row('some_number', 850.56);
 
-        $this->assertEquals($result, $statement->get_statement());
+        $this->assertEquals($result, $statement->dump());
     }
 }

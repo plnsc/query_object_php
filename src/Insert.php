@@ -4,7 +4,7 @@ namespace pnasc;
 
 class Insert extends Statement
 {
-    public function get_statement()
+    public function dump()
     {
         $sep = $this::SEPARATOR_LIST . ' ';
         $rows = [];

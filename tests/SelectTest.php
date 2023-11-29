@@ -33,6 +33,6 @@ class SelectTest extends TestCase
 
         $statement->set_criteria($criteria);
 
-        $this->assertEquals($result, $statement->get_statement());
+        $this->assertEquals($result, $statement->dump());
     }
 }
