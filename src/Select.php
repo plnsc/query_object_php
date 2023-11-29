@@ -18,10 +18,19 @@ class Select extends Statement
             $sql_parts[] = implode(' ', array(
                 $this::CLAUSE_WHERE, $this->criteria->dump()));
 
-            if ($this->criteria->has_property('order')) {
+            if ($this->criteria->has_property('order_by')) {
+                $order_by = $this->criteria->get_property('order_by');
+
+                foreach ($order_by as $i => $column) {
+                    $order_by[$i] = implode(' ', [
+                        $this->wrapper('identifier', $column[0]),
+                        $column[1],
+                    ]);
+                }
+
                 $sql_parts[] = implode(' ', array(
                     $this::CLAUSE_ORDER_BY,
-                    $this->criteria->get_property('order'),
+                    implode($this::SEPARATOR_LIST . ' ', $order_by),
                 ));
             }
             if ($this->criteria->has_property('limit')) {

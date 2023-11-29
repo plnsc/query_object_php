@@ -5,7 +5,9 @@ namespace pnasc;
 class Criteria extends Expression
 {
     private $expressions = array();
-    private $properties = array();
+    private $properties = [
+        'order_by' => [],
+    ];
 
     public function add(Expression $expression, $operator = Dialect::OPERATOR_AND)
     {
@@ -44,5 +46,15 @@ class Criteria extends Expression
     public function has_property($property)
     {
         return array_key_exists($property, $this->properties);
+    }
+
+    public function order_by($column, $direction = 1)
+    {
+        $this->properties['order_by'][] = [
+            $column,
+            ($direction >= 0
+                ? self::CLAUSE_SORT_ASCENDING
+                : self::CLAUSE_SORT_DESCENDING),
+        ];
     }
 }

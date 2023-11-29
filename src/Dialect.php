@@ -45,9 +45,8 @@ class Dialect
     // const CLAUSE_GROUP_BY = 'GROUP BY';
     // const CLAUSE_HAVING = 'HAVING';
     const CLAUSE_ORDER_BY = 'ORDER BY';
-    // TODO: Order by modifiers
-    // const CLAUSE_SORT_ASCENDING = 'ASC';
-    // const CLAUSE_SORT_DESCENDING = 'DESC';
+    const CLAUSE_SORT_ASCENDING = 'ASC';
+    const CLAUSE_SORT_DESCENDING = 'DESC';
     const CLAUSE_OFFSET = 'OFFSET';
     const CLAUSE_LIMIT = 'LIMIT';
 
