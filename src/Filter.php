@@ -14,7 +14,10 @@ class Filter extends Expression
         $this->operator = $operator;
 
         if ($this->operator === $this::OPERATOR_BETWEEN) {
-            $this->value = $value;
+            $this->value = [
+                $this->sanitize_value($value[0]),
+                $this->sanitize_value($value[1]),
+            ];
         } else {
             $this->value = $this->sanitize_value($value);
         }
