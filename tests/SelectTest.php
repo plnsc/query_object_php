@@ -13,7 +13,7 @@ class SelectTest extends TestCase
     public function test_statement()
     {
         $result = "SELECT id, name, gender FROM gen_z_names";
-        $result .= " WHERE (name LIKE 'enzo%' AND name LIKE 'valentina%') ORDER BY name LIMIT 10 OFFSET 0";
+        $result .= " WHERE (name LIKE 'enzo%' AND name LIKE 'valentina%') ORDER BY name LIMIT 10 OFFSET 0;";
 
         $criteria = new Criteria;
         $criteria->add(Filter::like('name', 'enzo%'));

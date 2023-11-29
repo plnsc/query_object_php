@@ -12,7 +12,7 @@ class DeleteTest extends TestCase
 
     public function test_statement()
     {
-        $result = "DELETE FROM some_table WHERE (some_table_id = 3)";
+        $result = "DELETE FROM some_table WHERE (some_table_id = 3);";
 
         $criteria = new Criteria;
         $criteria->add(Filter::equals('some_table_id', 3));

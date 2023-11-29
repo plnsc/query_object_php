@@ -48,6 +48,7 @@ class Dialect
     const CLAUSE_LIMIT = 'LIMIT';
 
     const SEPARATOR_LIST = ',';
+    const SEPARATOR_STATEMENT = ';';
 
     private const STRING_WRAPPER = ["'", "'"];
     private const IDENTIFIER_WRAPPER = ["", ""]; // ``, [] or

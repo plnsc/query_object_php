@@ -6,19 +6,23 @@ class Insert extends Statement
 {
     public function get_statement()
     {
+        $sep = $this::SEPARATOR_LIST . ' ';
+        $rows = [];
+
+        foreach ($this->data as $row) {
+            $rows[] = $this->wrapper('group',
+                implode($sep, array_values($row)));
+        }
+
         $this->sql = implode(' ', array(
             $this::CLAUSE_INSERT_INTO,
             $this->get_entity(),
-            $this->wrapper('group',
-                implode($this::SEPARATOR_LIST . ' ',
-                    array_keys($this->data))),
+            $this->wrapper('group', implode($sep, $this->columns)),
             $this::CLAUSE_VALUES,
-            $this->wrapper('group',
-                implode($this::SEPARATOR_LIST . ' ',
-                    array_values($this->data))),
+            implode($sep, $rows),
         ));
 
-        return $this->sql;
+        return $this->sql . $this::SEPARATOR_STATEMENT;
     }
 
     public function set_criteria(Criteria $criteria)

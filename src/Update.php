@@ -9,10 +9,10 @@ class Update extends Statement
         $sql_parts = array(implode(' ', array(
             $this::CLAUSE_UPDATE, $this->get_entity())));
 
-        if ($this->data) {
+        if ($this->data && $this->data[0]) {
             $set_arguments = array();
 
-            foreach ($this->data as $column => $value) {
+            foreach ($this->data[0] as $column => $value) {
                 $set_arguments[] = implode(' ', array(
                     $column, $this::OPERATOR_SET, $value));
             }
@@ -32,6 +32,12 @@ class Update extends Statement
         }
 
         $this->sql = implode(' ', $sql_parts);
-        return $this->sql;
+        return $this->sql . $this::SEPARATOR_STATEMENT;
+    }
+
+    public function next_row()
+    {
+        throw new \Exception(sprintf('Cannot call %s from %s',
+            __METHOD__, __CLASS__));
     }
 }
