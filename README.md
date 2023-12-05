@@ -6,6 +6,8 @@ Why? Years ago when I was first learning PHP, I wrote something similar to pract
 
 Do you want to modify something? Feel free to do it and I would love to know what you did to it 👨🏻‍🎨.
 
+OBS: I don't recommend using it in production code, since there is no further validation and sanitization in data.
+
 **After cloning it**, run the following command to install dependencies:
 
 ```bash
